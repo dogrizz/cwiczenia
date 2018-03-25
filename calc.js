@@ -19,6 +19,6 @@ angular.module('calcApp', [])
         calc.result = 1440;
 
         calc.calculate = function() {
-            calc.result = calc.hours*60 + calc.minutes;
+            calc.result = +calc.hours * 60 + +calc.minutes;
         }
     });
