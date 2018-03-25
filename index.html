@@ -1,0 +1,43 @@
+<!doctype html>
+<html ng-app="calcApp">
+<head>
+    <meta charset="UTF-8">
+    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.6.9/angular.js"></script>
+    <script src="calc.js"></script>
+</head>
+<body>
+<div ng-controller="CalcController as calc">
+    <div>
+        <label>Krótka przerwa:</label>
+        <input type="text" ng-model="calc.shortBreak" placeholder="minuty" ng-change="calc.calculate()">
+    </div>
+    <div>
+        <label>Długa przerwa:</label>
+        <input type="text" ng-model="calc.longBreak" placeholder="minuty" ng-change="calc.calculate()">
+    </div>
+    <div>
+        <label>Suma dotychczasowych ćwiczeń:</label>
+        <input type="text" ng-model="calc.runningAmount" placeholder="minuty" ng-change="calc.calculate()">
+    </div>
+    <div>
+        <label>Docelowy czas ćwiczeń:</label>
+        <input type="text" ng-model="calc.targetAmount" placeholder="minuty" ng-change="calc.calculate()">
+    </div>
+    <div>
+        <label>Ile do końca doby:</label>
+        <input type="text" ng-model="calc.timeLeft" placeholder="minuty" ng-change="calc.calculate()">
+        <hr>
+        <h3>Czas jednego ćwiczenia {{calc.result}} minut!</h3>
+    </div>
+</div>
+<hr>
+<div ng-controller="ConvertController as conv">
+    <h4>Zamień godziny na minuty</h4>
+    <label>Godziny:</label>
+    <input type="text" ng-model="conv.hours" placeholder="godziny" ng-change="conv.calculate()"> <br/>
+    Minut: {{conv.minutes}}
+</div>
+
+</body>
+</html>
+
