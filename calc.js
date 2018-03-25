@@ -15,9 +15,10 @@ angular.module('calcApp', [])
     .controller('ConvertController', function() {
         let calc = this;
         calc.hours = 24;
-        calc.minutes = 1440;
+        calc.minutes = 0;
+        calc.result = 1440;
 
         calc.calculate = function() {
-            calc.minutes = calc.hours*60;
+            calc.result = calc.hours*60;
         }
     });
