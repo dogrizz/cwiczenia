@@ -43,6 +43,8 @@ angular.module('calcApp', [])
                 sum += +exercise.hours * 60 + +exercise.minutes;
             }
             accu.result = sum;
+            accu.resultHour = Math.trunc(sum / 60);
+            accu.resultMinute = sum % 60;
         };
 
         accu.add = function () {
