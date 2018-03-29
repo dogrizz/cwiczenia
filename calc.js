@@ -16,6 +16,9 @@ angular.module('calcApp', [])
         let accu = this;
         accu.hours = [];
         accu.result = 0;
+        accu.resultHour = 0;
+        accu.resultMinute = 0;
+    
         for (let i = 0; i <= 23; i++) {
             accu.hours.push(i);
         }
