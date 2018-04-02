@@ -52,10 +52,12 @@ angular.module('calcApp', [])
 
         accu.add = function () {
             accu.exercisesTime.push(getEmptyExercise());
+            accu.calculate();
         };
 
         accu.remove = function (exercise) {
             accu.exercisesTime.splice(accu.exercisesTime.indexOf(exercise), 1);
+            accu.calculate();
         };
     })
     .controller('ConvertController', function () {
