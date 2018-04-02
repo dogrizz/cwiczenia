@@ -6,7 +6,7 @@
     <script src="calc.js"></script>
 </head>
 <body>
-<div style="width: 500px;float: left;margin-right: 40px">
+<div style="width: 500px;float: left;margin-right: 40px;margin-bottom: 20px">
     <div ng-controller="CalcController as calc">
         <div>
             <label>Krótka przerwa:</label>
@@ -42,12 +42,12 @@
         Minut: {{conv.result}}
     </div>
 </div>
-<div ng-controller="AccumulatorController as accu" style="float: left;">
+<div ng-controller="AccumulatorController as accu" style="float: left; margin-right: 15px">
     Zsumuj dotychczasowe ćwiczenia: <br/>
     <div ng-repeat="exerciseTime in accu.exercisesTime track by exerciseTime.uuid" style="margin-bottom: 5px;">
         <label class="select">
             <select ng-model="exerciseTime.hours" ng-options="x for x in accu.hours"
-                    ng-change="accu.calculate()"></select>:
+                    ng-change="accu.calculate()"></select>&nbsp;:
             <select ng-model="exerciseTime.minutes" ng-options="x for x in accu.minutes"
                     ng-change="accu.calculate()"></select>
             <span ng-click="accu.remove(exerciseTime)" style="margin-left: 5px"><img src="delete.png"></span>
@@ -56,6 +56,26 @@
     <div ng-click="accu.add()" style="margin-top: 15px;margin-bottom: 15px;"><img src="add.png"></div>
     <span>Suma czasu ćwiczeń: </span><span style="font-weight: bold">{{accu.result}} m = {{accu.resultHour}}:{{accu.resultMinute}}</span>
 </div>
+<div ng-controller="SumUpController as sumUp" style="float: left;">
+    Zsumuj dotychczasowe ćwiczenia: <br/>
+    <div ng-repeat="exercise in sumUp.exercises track by exercise.uuid" style="margin-bottom: 5px;">
+        <label class="select">
+            Od:
+            <select ng-model="exercise.fromHours" ng-options="x for x in sumUp.hours"
+                    ng-change="sumUp.calculate()"></select>&nbsp;:
+            <select ng-model="exercise.fromMinutes" ng-options="x for x in sumUp.minutes"
+                    ng-change="sumUp.calculate()"></select>
+            &nbsp;&nbsp;&nbsp;Do:
+            <select ng-model="exercise.toHours" ng-options="x for x in sumUp.hours"
+                    ng-change="sumUp.calculate()"></select>&nbsp;:&nbsp;
+            <select ng-model="exercise.toMinutes" ng-options="x for x in sumUp.minutes"
+                    ng-change="sumUp.calculate()"></select>
+            <span>{{exercise.subSum}} m</span>        
+            <span ng-click="sumUp.remove(exercise)" style="margin-left: 5px"><img src="delete.png"></span>
+        </label>
+    </div>
+    <div ng-click="sumUp.add()" style="margin-top: 15px;margin-bottom: 15px;"><img src="add.png"></div>
+    <span>Suma czasu ćwiczeń: </span><span style="font-weight: bold">{{sumUp.result}} m = {{sumUp.resultHour}}:{{sumUp.resultMinute}}</span>
+</div>
 </body>
 </html>
-
