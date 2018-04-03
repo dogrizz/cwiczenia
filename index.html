@@ -27,34 +27,9 @@
         <div>
             <label>Ile do końca doby:</label>
             <input type="text" ng-model="calc.timeLeft" placeholder="minuty" ng-change="calc.calculate()">
-            <hr>
             <h3>Czas jednego ćwiczenia {{calc.result}} minut!</h3>
         </div>
     </div>
-
-    <div ng-controller="ConvertController as conv">
-        <hr/>
-        <h4>Zamień godziny na minuty</h4>
-        <label>Godziny:</label>
-        <input type="text" ng-model="conv.hours" placeholder="godziny" ng-change="conv.calculate()">
-        <label>Minuty:</label>
-        <input type="text" ng-model="conv.minutes" placeholder="minuty" ng-change="conv.calculate()"> <br/>
-        Minut: {{conv.result}}
-    </div>
-</div>
-<div ng-controller="AccumulatorController as accu" style="float: left; margin-right: 15px">
-    Zsumuj dotychczasowe ćwiczenia: <br/>
-    <div ng-repeat="exerciseTime in accu.exercisesTime track by exerciseTime.uuid" style="margin-bottom: 5px;">
-        <label class="select">
-            <select ng-model="exerciseTime.hours" ng-options="x for x in accu.hours"
-                    ng-change="accu.calculate()"></select>&nbsp;:
-            <select ng-model="exerciseTime.minutes" ng-options="x for x in accu.minutes"
-                    ng-change="accu.calculate()"></select>
-            <span ng-click="accu.remove(exerciseTime)" style="margin-left: 5px"><img src="delete.png"></span>
-        </label>
-    </div>
-    <div ng-click="accu.add()" style="margin-top: 15px;margin-bottom: 15px;"><img src="add.png"></div>
-    <span>Suma czasu ćwiczeń: </span><span style="font-weight: bold">{{accu.result}} m = {{accu.resultHour}}:{{accu.resultMinute}}</span>
 </div>
 <div ng-controller="SumUpController as sumUp" style="float: left;">
     Zsumuj dotychczasowe ćwiczenia: <br/>

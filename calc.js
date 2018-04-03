@@ -12,64 +12,6 @@ angular.module('calcApp', [])
         };
 
     })
-    .controller('AccumulatorController', function () {
-        let accu = this;
-        accu.result = 0;
-        accu.resultHour = 0;
-        accu.resultMinute = 0;
-        accu.hours = [];
-        for (let i = 0; i <= 23; i++) {
-            accu.hours.push(i);
-        }
-
-        accu.minutes = [];
-        for (let i = 0; i <= 59; i++) {
-            accu.minutes.push(i);
-        }
-
-        function getUUID() {
-            return ([1e7] + -1e3 + -4e3 + -8e3 + -1e11).replace(/[018]/g, c =>
-                (c ^ crypto.getRandomValues(new Uint8Array(1))[0] & 15 >> c / 4).toString(16)
-            )
-        }
-
-
-        function getEmptyExercise() {
-            return {hours: 0, minutes: 0, uuid: getUUID()};
-        }
-
-        accu.exercisesTime = [getEmptyExercise()];
-
-        accu.calculate = function () {
-            let sum = 0;
-            for (let exercise of accu.exercisesTime) {
-                sum += +exercise.hours * 60 + +exercise.minutes;
-            }
-            accu.result = sum;
-            accu.resultHour = Math.trunc(sum / 60);
-            accu.resultMinute = sum % 60;
-        };
-
-        accu.add = function () {
-            accu.exercisesTime.push(getEmptyExercise());
-            accu.calculate();
-        };
-
-        accu.remove = function (exercise) {
-            accu.exercisesTime.splice(accu.exercisesTime.indexOf(exercise), 1);
-            accu.calculate();
-        };
-    })
-    .controller('ConvertController', function () {
-        let conv = this;
-        conv.hours = 24;
-        conv.minutes = 0;
-        conv.result = 1440;
-
-        conv.calculate = function () {
-            conv.result = +conv.hours * 60 + +conv.minutes;
-        }
-    })
     .controller('SumUpController', function () {
         let sumUp = this;
         sumUp.result = 0;
