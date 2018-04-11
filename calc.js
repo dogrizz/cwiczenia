@@ -21,7 +21,7 @@ angular.module('calcApp', [])
         for (let i = 0; i <= 23; i++) {
             sumUp.hours.push(i);
         }
-
+    
         sumUp.minutes = [];
         for (let i = 0; i <= 59; i++) {
             sumUp.minutes.push(i);
@@ -32,13 +32,22 @@ angular.module('calcApp', [])
                 (c ^ crypto.getRandomValues(new Uint8Array(1))[0] & 15 >> c / 4).toString(16)
             )
         }
-
-
+    
         function getEmptyExercise() {
             return {fromHours: 0, fromMinutes: 0,toHours: 0, toMinutes: 0, uuid: getUUID()};
         }
 
-        sumUp.exercises = [getEmptyExercise()];
+        function persistToLocalStorage() {
+            localStorage.setItem("exercises", exercises);   
+        }
+    
+        sumUp.exercises = (function () {
+            let oldExercises = localStorage.getItem("exercises);
+            if(oldExercises === null) {
+                return [getEmptyExercise()];
+            }
+            return oldExercises;
+        })();
 
         sumUp.calculate = function () {
             let sum = 0;
@@ -56,6 +65,7 @@ angular.module('calcApp', [])
             sumUp.result = sum;
             sumUp.resultHour = Math.trunc(sum / 60);
             sumUp.resultMinute = sum % 60;
+            persistToLocalStorage();
         };
 
         sumUp.add = function () {
