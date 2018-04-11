@@ -42,7 +42,7 @@ angular.module('calcApp', [])
         }
     
         sumUp.exercises = (function () {
-            let oldExercises = localStorage.getItem("exercises);
+            let oldExercises = localStorage.getItem("exercises");
             if(oldExercises === null) {
                 return [getEmptyExercise()];
             }
