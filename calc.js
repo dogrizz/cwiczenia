@@ -39,7 +39,7 @@ angular.module('calcApp', [])
         }
 
         function persistToLocalStorage() {
-            localStorage.setItem(LOCAL_STORAGE_KEY, sumUp.exercises);   
+            localStorage.setItem(LOCAL_STORAGE_KEY, JSON.stringify(sumUp.exercises));   
         }
     
         sumUp.exercises = (function () {
@@ -47,7 +47,7 @@ angular.module('calcApp', [])
             if(oldExercises === null) {
                 return [getEmptyExercise()];
             }
-            return oldExercises;
+            return JSON.parse(oldExercises);
         })();
 
         sumUp.calculate = function () {
