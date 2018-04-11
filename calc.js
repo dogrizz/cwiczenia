@@ -14,6 +14,7 @@ angular.module('calcApp', [])
     })
     .controller('SumUpController', function () {
         let sumUp = this;
+        const LOCAL_STORAGE_KEY = "exercises";
         sumUp.result = 0;
         sumUp.resultHour = 0;
         sumUp.resultMinute = 0;
@@ -38,11 +39,11 @@ angular.module('calcApp', [])
         }
 
         function persistToLocalStorage() {
-            localStorage.setItem("exercises", exercises);   
+            localStorage.setItem(LOCAL_STORAGE_KEY, sumUp.exercises);   
         }
     
         sumUp.exercises = (function () {
-            let oldExercises = localStorage.getItem("exercises");
+            let oldExercises = localStorage.getItem(LOCAL_STORAGE_KEY);
             if(oldExercises === null) {
                 return [getEmptyExercise()];
             }
